@@ -1,7 +1,8 @@
 import React from "react";
 import TypingCard from "@/components/TypingCard";
+
 export default () => {
-  const cardContent = `
+    const cardContent = `
     本项目中的菜单权限和路由权限都是基于用户所属角色来分配的，本项目中内置了三种角色，分别是：
     
     <ul>
@@ -12,9 +13,9 @@ export default () => {
     
     你可以通过<a href="#/user">用户管理</a>页面，动态的添加或删除用户，以及编辑某个已经存在的用户，例如修改其权限等操作。
   `;
-  return (
-    <div className="app-container">
-      <TypingCard title="权限说明" source={cardContent} />
-    </div>
-  );
+    return (
+        <div className="app-container">
+            <TypingCard title="权限说明" source={cardContent}/>
+        </div>
+    );
 };

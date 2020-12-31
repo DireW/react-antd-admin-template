@@ -1,8 +1,10 @@
 import tracker from '../utils/tracker';
 import onload from '../utils/onload';
+
 export function blankScreen() {
     let wrapperElements = ['html', 'body', '#container', '.content'];
     let emptyPoints = 0;
+    
     function getSelector(element) {
         if (element.id) {
             return "#" + element.id;
@@ -12,12 +14,14 @@ export function blankScreen() {
             return element.nodeName.toLowerCase();
         }
     }
+    
     function isWrapper(element) {
         let selector = getSelector(element);
         if (wrapperElements.indexOf(selector) !== -1) {
             emptyPoints++;
         }
     }
+    
     onload(function () {
         for (let i = 1; i <= 9; i++) {
             let xElements = document.elementsFromPoint(
@@ -27,7 +31,7 @@ export function blankScreen() {
             isWrapper(xElements[0]);
             isWrapper(yElements[0]);
         }
-
+        
         if (emptyPoints >= 18) {
             let centerElements = document.elementsFromPoint(
                 window.innerWidth / 2, window.innerHeight / 2
@@ -42,5 +46,5 @@ export function blankScreen() {
             });
         }
     });
-
+    
 }

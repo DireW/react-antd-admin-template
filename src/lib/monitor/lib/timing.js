@@ -2,6 +2,7 @@ import tracker from '../utils/tracker';
 import onload from '../utils/onload';
 import getLastEvent from '../utils/getLastEvent';
 import getSelector from '../utils/getSelector';
+
 export function timing() {
     let FMP, LCP;
     // 增加一个性能条目的观察者
@@ -10,14 +11,14 @@ export function timing() {
             let perfEntries = entryList.getEntries();
             FMP = perfEntries[0];//startTime 2000以后
             observer.disconnect();//不再观察了
-        }).observe({ entryTypes: ['element'] });//观察页面中的意义的元素
-
+        }).observe({entryTypes: ['element']});//观察页面中的意义的元素
+        
         new PerformanceObserver((entryList, observer) => {
             let perfEntries = entryList.getEntries();
             LCP = perfEntries[0];
             observer.disconnect();//不再观察了
-        }).observe({ entryTypes: ['largest-contentful-paint'] });//观察页面中的意义的元素
-
+        }).observe({entryTypes: ['largest-contentful-paint']});//观察页面中的意义的元素
+        
         new PerformanceObserver((entryList, observer) => {
             let lastEvent = getLastEvent();
             let firstInput = entryList.getEntries()[0];
@@ -36,12 +37,12 @@ export function timing() {
                         selector: lastEvent ? getSelector(lastEvent.path || lastEvent.target) : ''
                     });
                 }
-
+                
             }
             observer.disconnect();//不再观察了
-        }).observe({ type: 'first-input', buffered: true });//观察页面中的意义的元素
+        }).observe({type: 'first-input', buffered: true});//观察页面中的意义的元素
     }
-
+    
     //用户的第一次交互 点击页面 
     onload(function () {
         setTimeout(() => {
@@ -69,8 +70,8 @@ export function timing() {
                 timeToInteractive: domInteractive - fetchStart,//首次可交互时间
                 loadTIme: loadEventStart - fetchStart //完整的加载时间
             });
-
-
+            
+            
             let FP = performance.getEntriesByName('first-paint')[0];
             let FCP = performance.getEntriesByName('first-contentful-paint')[0];
             //开始发送性能指标
@@ -88,5 +89,5 @@ export function timing() {
             });
         }, 3000);
     });
-
+    
 }

@@ -1,4 +1,3 @@
-
 function getSelectors(path) {
     return path.reverse().filter(element => {
         return element !== document && element !== window;
@@ -14,6 +13,7 @@ function getSelectors(path) {
         return selector;
     }).join(' ');
 }
+
 export default function (pathsOrTarget) {
     if (Array.isArray(pathsOrTarget)) {//可能是一个数组
         return getSelectors(pathsOrTarget);

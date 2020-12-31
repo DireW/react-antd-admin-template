@@ -6,4 +6,4 @@ import "@/styles/index.less";
 import "./mock";
 import '@/lib/monitor';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
