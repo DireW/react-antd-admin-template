@@ -26,8 +26,8 @@ export default {
         let mockList = List.filter((item) => {
             if (star && item.star.length !== star) return false;
             if (status && item.status !== status) return false;
-            return !(title && item.title.indexOf(title) < 0);
-            
+            if (title && item.title.indexOf(title) < 0) return false;
+            return true;
         });
         let pageList = mockList.slice(start, end);
         return {
